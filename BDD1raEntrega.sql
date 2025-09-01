@@ -71,7 +71,7 @@ FOREIGN KEY (id_Usuario) REFERENCES Usuario(id_Usuario)
 create table HorasTrabajo(
 id_Horas INT AUTO_INCREMENT UNIQUE,
 id_Usuario INT,
-Semana VARCHAR (10) NOT NULL,
+Semana DATE NOT NULL,
 HorasRegistradas DECIMAL NOT NULL,
 MotivoFAltante TEXT,
 SolicitudExoneracion TEXT NOT NULL,
