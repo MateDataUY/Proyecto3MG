@@ -52,26 +52,6 @@ FOREIGN KEY (id_Usuario) REFERENCES Usuario(id_Usuario)
 );
 
 
-
-
-create table ComprobanteInicial(
-id_Comprobante INT AUTO_INCREMENT UNIQUE,
-id_Usuario INT,
-id_Pago INT,
-id_Horas INT,
-EStadoAprovacion Enum('Aprobado','Pendiente','Rechazado'),
-Observaciones TEXT,
-FechaSalida DATE,
-Monto DECIMAL,
-PRIMARY KEY (id_Comprobante),
-FOREIGN KEY (id_Usuario) REFERENCES Usuario(id_Usuario),
-FOREIGN KEY (id_Horas) REFERENCES HorasTrabajo(id_Horas),
-FOREIGN KEY (id_Pago) REFERENCES PagoMensaul(id_Pago)
-);
-
-
-
-
 create table HorasTrabajo(
 id_Horas INT AUTO_INCREMENT UNIQUE,
 id_Usuario INT,
@@ -112,3 +92,17 @@ FOREIGN KEY (id_Usuario) REFERENCES Usuario(id_Usuario)
 );
 
 
+create table ComprobanteInicial(
+id_Comprobante INT AUTO_INCREMENT UNIQUE,
+id_Usuario INT,
+id_Pago INT,
+id_Horas INT,
+EStadoAprovacion Enum('Aprobado','Pendiente','Rechazado'),
+Observaciones TEXT,
+FechaSalida DATE,
+Monto DECIMAL,
+PRIMARY KEY (id_Comprobante),
+FOREIGN KEY (id_Usuario) REFERENCES Usuario(id_Usuario),
+FOREIGN KEY (id_Horas) REFERENCES HorasTrabajo(id_Horas),
+FOREIGN KEY (id_Pago) REFERENCES PagoMensaul(id_Pago)
+);
