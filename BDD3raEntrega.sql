@@ -12,14 +12,12 @@ CREATE TABLE Admin(
     PRIMARY KEY (id_Admin)
 );
 
-
 CREATE TABLE TelefonoAdmin(
     id_Admin INT,
     telefono VARCHAR(20),
     PRIMARY KEY (id_Admin, telefono),
     FOREIGN KEY (id_Admin) REFERENCES Admin(id_Admin)
 );
-
 
 CREATE TABLE Usuario(
     id_Usuario INT AUTO_INCREMENT UNIQUE,
@@ -36,7 +34,6 @@ CREATE TABLE Usuario(
     PRIMARY KEY (id_Usuario)
 );
 
-
 CREATE TABLE Telefonousuario(
     id_Usuario INT,
     telefono VARCHAR(20),
@@ -52,6 +49,21 @@ CREATE TABLE UnidadHabitacional(
     FechaAsignacion DATE NOT NULL,
     PRIMARY KEY (id_Unidad),
     FOREIGN KEY (id_Usuario) REFERENCES Usuario(id_Usuario)
+);
+
+CREATE TABLE ComprobanteInicial(
+    id_Comprobante INT AUTO_INCREMENT UNIQUE,
+    id_Usuario INT,
+    id_Pago INT,
+    id_Horas INT,
+    EStadoAprovacion ENUM('Aprobado','Pendiente','Rechazado'),
+    Observaciones TEXT,
+    FechaSalida DATE,
+    Monto DECIMAL,
+    PRIMARY KEY (id_Comprobante),
+    FOREIGN KEY (id_Usuario) REFERENCES Usuario(id_Usuario),
+    FOREIGN KEY (id_Horas) REFERENCES HorasTrabajo(id_Horas),
+    FOREIGN KEY (id_Pago) REFERENCES PagoMensaul(id_Pago)
 );
 
 CREATE TABLE HorasTrabajo(
@@ -89,28 +101,6 @@ CREATE TABLE AvanceObra(
     FOREIGN KEY (id_Usuario) REFERENCES Usuario(id_Usuario)
 );
 
-CREATE TABLE ComprobanteInicial(
-    id_Comprobante INT AUTO_INCREMENT UNIQUE,
-    id_Usuario INT,
-    id_Pago INT,
-    id_Horas INT,
-    EStadoAprovacion ENUM('Aprobado','Pendiente','Rechazado'),
-    Observaciones TEXT,
-    FechaSalida DATE,
-    Monto DECIMAL,
-    PRIMARY KEY (id_Comprobante),
-    FOREIGN KEY (id_Usuario) REFERENCES Usuario(id_Usuario),
-    FOREIGN KEY (id_Horas) REFERENCES HorasTrabajo(id_Horas),
-    FOREIGN KEY (id_Pago) REFERENCES PagoMensaul(id_Pago)
-);
-
-CREATE TABLE Aporte (
-    id_Aporte INT AUTO_INCREMENT PRIMARY KEY,
-    id_Usuario INT,
-    material ENUM('madera','bloques','arena','pinturas','cemento') NOT NULL,
-    cantidad DECIMAL NOT NULL,
-    FOREIGN KEY (id_Usuario) REFERENCES Usuario(id_Usuario)
-);
 
 CREATE TABLE Mensajes(
     id_Mensaje INT AUTO_INCREMENT PRIMARY KEY,
