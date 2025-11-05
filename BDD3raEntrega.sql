@@ -51,21 +51,6 @@ CREATE TABLE UnidadHabitacional(
     FOREIGN KEY (id_Usuario) REFERENCES Usuario(id_Usuario)
 );
 
-CREATE TABLE ComprobanteInicial(
-    id_Comprobante INT AUTO_INCREMENT UNIQUE,
-    id_Usuario INT,
-    id_Pago INT,
-    id_Horas INT,
-    EStadoAprovacion ENUM('Aprobado','Pendiente','Rechazado'),
-    Observaciones TEXT,
-    FechaSalida DATE,
-    Monto DECIMAL,
-    PRIMARY KEY (id_Comprobante),
-    FOREIGN KEY (id_Usuario) REFERENCES Usuario(id_Usuario),
-    FOREIGN KEY (id_Horas) REFERENCES HorasTrabajo(id_Horas),
-    FOREIGN KEY (id_Pago) REFERENCES PagoMensaul(id_Pago)
-);
-
 CREATE TABLE HorasTrabajo(
     id_Horas INT AUTO_INCREMENT UNIQUE,
     id_Usuario INT,
@@ -101,6 +86,20 @@ CREATE TABLE AvanceObra(
     FOREIGN KEY (id_Usuario) REFERENCES Usuario(id_Usuario)
 );
 
+CREATE TABLE ComprobanteInicial(
+    id_Comprobante INT AUTO_INCREMENT UNIQUE,
+    id_Usuario INT,
+    id_Pago INT,
+    id_Horas INT,
+    EStadoAprovacion ENUM('Aprobado','Pendiente','Rechazado'),
+    Observaciones TEXT,
+    FechaSalida DATE,
+    Monto DECIMAL,
+    PRIMARY KEY (id_Comprobante),
+    FOREIGN KEY (id_Usuario) REFERENCES Usuario(id_Usuario),
+    FOREIGN KEY (id_Horas) REFERENCES HorasTrabajo(id_Horas),
+    FOREIGN KEY (id_Pago) REFERENCES PagoMensaul(id_Pago)
+);
 
 CREATE TABLE Mensajes(
     id_Mensaje INT AUTO_INCREMENT PRIMARY KEY,
